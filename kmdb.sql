@@ -109,7 +109,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
-DROP TABLE IF EXISTS movie_cast;
+DROP TABLE IF EXISTS movie_casts;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -119,7 +119,7 @@ CREATE TABLE movies (
     title TEXT,
     year_released INTEGER,
     mpaa TEXT,
-    studio_id INTEGER
+    studio_id INTEGER,
 );
 
 CREATE TABLE actors (
@@ -133,7 +133,7 @@ CREATE TABLE studios (
     name TEXT
 );
 
-CREATE TABLE movies_cast (
+CREATE TABLE movie_casts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movies_id INTEGER,
     actors_id INTEGER
@@ -152,12 +152,292 @@ INSERT INTO movies (
 VALUES (
     "Batman Begins",
     2005,
-    PG-13,
+    "PG-13",
     1
 );
---use to test entries
-SELECT *
-FROM movies;
+
+INSERT INTO movies (
+    title,
+    year_released,
+    mpaa,
+    studio_id
+)
+VALUES (
+    "The Dark Knight",
+    2008,
+    "PG-13",
+    1
+);
+
+INSERT INTO movies (
+    title,
+    year_released,
+    mpaa,
+    studio_id
+)
+VALUES (
+    "The Dark Knight Rises",
+    2012,
+    "PG-13",
+    1
+);
+--use to test movies entries
+--SELECT *
+--FROM movies;
+
+--mh NEED TO INSERT INTO ACTORS--******NEED TO FIGURE OUT WHAT'S GOING ON WITH ACTORS****
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Christian Bale",
+    "Bruce Wayne"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Michael Caine",
+    "Alfred"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Liam Neeson",
+    "Ra's Al Ghul"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Katie Holmes",
+    "Rachel Dawes"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Gary Oldman",
+    "Commissioner Gordon"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Heath Ledger",
+    "Joker"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Aaron Eckhart",
+    "Harvey Dent"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Maggie Gyllenhaal",
+    "Rachel Dawes"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Tom Hardy",
+    "Bane"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Joseph Gordon-Levitt",
+    "John Blake"
+);
+
+INSERT INTO actors (
+    actor_name,
+    charactor_name
+)
+VALUES (
+    "Anne Hathaway",
+    "Selina Kyle"
+);
+
+--use to test actors entries
+--SELECT *
+--FROM actors;
+
+INSERT INTO studios (
+    name
+)
+VALUES (
+    "Warner Bros."
+);
+--use to test studios entries
+--SELECT *
+--FROM studios;
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    1,
+    1
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    1,
+    2
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    1,
+    3
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    1,
+    4
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    1,
+    5
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    2,
+    1
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    2,
+    2
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    2,
+    6
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    2,
+    7
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    2,
+    8
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    3,
+    1
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    3,
+    5
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    3,
+    9
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    3,
+    10
+);
+
+INSERT INTO movie_casts (
+    movies_id,
+    actors_id
+)
+VALUES (
+    3,
+    11
+);
+
+--use to test movie_casts entries
+--SELECT *
+--FROM movie_casts;
 
 
 -- Prints a header for the movies output
@@ -168,6 +448,9 @@ FROM movies;
 -- The SQL statement for the movies output
 -- TODO!
 
+SELECT movies.title, movies.year_released, movies.mpaa, studios.name
+FROM movies INNER JOIN studios ON movies.studio_id = studios.id;
+
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
@@ -177,3 +460,7 @@ FROM movies;
 
 -- The SQL statement for the cast output
 -- TODO!
+--SELECT movies.title, actors.actor_name, actors.charactor_name
+--FROM movies INNER JOIN 
+
+--NEED TO FIGURE OUT WHAT THE MANY TO MANY RELATIONSHIP IS AND WHATS GOING ON WITH ACTORS AND MOVIES AND CHARACTERS. IS ACTORS TO MOVIES 1 TO MANY, AND ACTORS TO CHARACTERS MANY TO MANY?
